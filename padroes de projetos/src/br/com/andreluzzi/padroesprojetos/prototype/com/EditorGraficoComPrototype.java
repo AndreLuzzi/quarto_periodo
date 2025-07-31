@@ -8,6 +8,9 @@ public class EditorGraficoComPrototype {
         Forma copia = original.clonar(); // não importa o tipo concreto
         copia.desenhar();
 
+        Forma copia = original.clonar(); // não importa o tipo concreto
+        copia.desenhar();
+
         Forma retangulo = new Retangulo(30, 20, "verde");
         Forma retanguloCopia = retangulo.clonar();
         retanguloCopia.desenhar();

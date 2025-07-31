@@ -10,6 +10,6 @@ public class Circulo {
     }
 
     public void desenhar() {
-        System.out.println("Desenhando círculo " + cor + " com raio " + raio);
+        System.out.println("Desenhando circulo " + cor + " com raio " + raio);
     }
 }

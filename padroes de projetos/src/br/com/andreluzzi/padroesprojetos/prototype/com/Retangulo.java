@@ -13,7 +13,7 @@ public class Retangulo implements Forma {
 
     @Override
     public void desenhar() {
-        System.out.println("Desenhando retângulo " + cor + " de " + largura + "x" + altura);
+        System.out.println("Desenhando retangulo " + cor + " de " + largura + "x" + altura);
     }
 
     @Override
