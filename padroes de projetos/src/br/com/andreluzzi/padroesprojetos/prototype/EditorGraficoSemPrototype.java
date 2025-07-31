@@ -1,6 +1,6 @@
 package br.com.andreluzzi.padroesprojetos.prototype;
 
-class Circulo {
+public class Circulo {
     int raio;
     String cor;
 

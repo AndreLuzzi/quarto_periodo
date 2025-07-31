@@ -1,6 +1,6 @@
 package br.com.andreluzzi.padroesprojetos.prototype;
 
-class Circulo implements Forma {
+public class Circulo implements Forma {
     int raio;
     String cor;
 
