@@ -1,4 +1,4 @@
-package br.com.andreluzzi.padroesprojetos.prototype;
+package br.com.andreluzzi.padroesprojetos.prototype.com;
 
 public class Circulo implements Forma {
     int raio;

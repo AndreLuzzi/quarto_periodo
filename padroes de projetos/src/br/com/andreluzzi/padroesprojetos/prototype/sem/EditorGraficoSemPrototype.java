@@ -1,4 +1,4 @@
-package br.com.andreluzzi.padroesprojetos.prototype;
+package br.com.andreluzzi.padroesprojetos.prototype.sem;
 
 public class EditorGraficoSemPrototype {
     public static void main(String[] args) {

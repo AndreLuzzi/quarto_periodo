@@ -1,4 +1,4 @@
-package br.com.andreluzzi.padroesprojetos.prototype;
+package br.com.andreluzzi.padroesprojetos.prototype.com;
 
 public class Retangulo implements Forma {
     int largura;
