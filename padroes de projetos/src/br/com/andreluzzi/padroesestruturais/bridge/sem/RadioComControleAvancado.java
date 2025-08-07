@@ -1,4 +1,4 @@
-package br.com.andreluzzi.padroesestruturais.bridge;
+package br.com.andreluzzi.padroesestruturais.bridge.sem;
 
 public class RadioComControleAvancado {
 
