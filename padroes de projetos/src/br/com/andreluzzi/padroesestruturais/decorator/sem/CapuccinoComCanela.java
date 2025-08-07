@@ -1,4 +1,4 @@
-package br.com.andreluzzi.padroesestruturais.decorator;
+package br.com.andreluzzi.padroesestruturais.decorator.sem;
 
 public class CapuccinoComCanela extends Capuccino{
 
