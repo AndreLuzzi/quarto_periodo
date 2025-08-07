@@ -4,7 +4,7 @@ public class ControleRemoto {
 
         protected Dispositivo dispositivo;
 
-        public ControleRemoto(Diapositivo dispositivo){
+        public ControleRemoto(Dispositivo dispositivo){
             this.dispositivo = dispositivo;
         }
 
