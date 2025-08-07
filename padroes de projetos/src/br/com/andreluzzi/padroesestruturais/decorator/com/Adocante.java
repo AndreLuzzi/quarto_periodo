@@ -11,7 +11,7 @@ public class Adocante extends CafeDecorator{
     }
 
     public String getDescricao(){
-        return super.getDescricao() + " com adocante"
+        return super.getDescricao() + " com adocante";
     }
 
 }

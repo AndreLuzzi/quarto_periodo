@@ -11,7 +11,7 @@ public class Acucar extends CafeDecorator{
     }
 
     public String getDescricao(){
-        return super.getDescricao() + " com acucar"
+        return super.getDescricao() + " com acucar";
     }
 
 }
