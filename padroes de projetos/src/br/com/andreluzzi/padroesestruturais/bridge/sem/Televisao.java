@@ -1,4 +1,4 @@
-package br.com.andreluzzi.padroesestruturais.bridge.com;
+package br.com.andreluzzi.padroesestruturais.bridge.sem;
 
 public class Televisao implements Dispositivo{
 
