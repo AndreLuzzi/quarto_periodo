@@ -1,11 +1,13 @@
 package br.com.andreluzzi.padroesestruturais.composite;
 
-public class Produto {
+public class Produto implements Item{
 
     private String nome;
     private double preco;
 
     public Produto(String nome, double preco){
+        this.nome = nome;
+        this.preco = preco;
         
     }
 
