@@ -6,22 +6,21 @@ public class Principal {
         EditorTexto editor = new EditorTexto();
         Historico historico = new Historico();
 
-        // Escrevendo no editor
+        //escrever no editor
         editor.escrever("Olá, ");
         historico.salvarMemento(editor.salvar());
 
         editor.escrever("mundo!");
         historico.salvarMemento(editor.salvar());
 
-        editor.escrever(" Este é um editor de texto.");
-
+        editor.escrever(" Este é um editor de texto!");
         System.out.println("Texto atual: " + editor.mostrarTexto());
 
-        // Desfazendo a última operação
+        //desfazer
         editor.desfazer(historico.desfazer());
         System.out.println("Após desfazer: " + editor.mostrarTexto());
 
-        // Desfazendo novamente
+        //desfazer novamente
         editor.desfazer(historico.desfazer());
         System.out.println("Após desfazer novamente: " + editor.mostrarTexto());
     }
