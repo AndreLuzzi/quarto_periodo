@@ -1,4 +1,4 @@
-package br.com.leonardovieira.padroes.comportamentais.memento;
+package br.com.andreluzzi.padroes.comportamentais.memento;
 
 import java.util.Stack;
 

@@ -1,5 +1,4 @@
-package br.com.leonardovieira.padroes.comportamentais.mediator;
-
+package br.com.andreluzzi.padroes.comportamentais.mediator;
 
 public interface Mediador {
 

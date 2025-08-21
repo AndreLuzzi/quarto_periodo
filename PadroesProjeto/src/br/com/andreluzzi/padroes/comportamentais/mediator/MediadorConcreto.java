@@ -1,4 +1,4 @@
-package br.com.leonardovieira.padroes.comportamentais.mediator;
+package br.com.andreluzzi.padroes.comportamentais.mediator;
 
 import java.util.ArrayList;
 import java.util.List;

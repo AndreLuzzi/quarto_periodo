@@ -1,7 +1,5 @@
-package br.com.leonardovieira.padroes.comportamentais.memento;
+package br.com.andreluzzi.padroes.comportamentais.memento;
 
-
-// Originator - Classe que deseja salvar e restaurar seu estado
 public class EditorTexto {
 
     private StringBuilder texto;

@@ -1,4 +1,4 @@
-package br.com.leonardovieira.padroes.comportamentais.iterator;
+package br.com.andreluzzi.padroes.comportamentais.iterator;
 
 public interface ColecaoAgregada<T> {
 
