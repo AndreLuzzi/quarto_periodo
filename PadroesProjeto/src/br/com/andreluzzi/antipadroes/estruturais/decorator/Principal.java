@@ -1,6 +1,5 @@
-package br.com.guilhermevillaca.antipadroes.estruturais.decorator;
+package br.com.andreluzzi.antipadroes.estruturais.decorator;
 
-// 🚀 Tentando testar as combinações erradas
 public class Principal {
     public static void main(String[] args) {
         Cafe cafeSimples = new Cafe();

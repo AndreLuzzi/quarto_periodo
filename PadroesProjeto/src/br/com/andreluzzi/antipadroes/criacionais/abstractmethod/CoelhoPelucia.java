@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.antipadroes.criacionais.abstractmethod;
+package br.com.andreluzzi.antipadroes.criacionais.abstractmethod;
 // Classes dos brinquedos
 class CoelhoPelucia {
     public void exibir() {

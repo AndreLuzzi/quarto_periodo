@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.antipadroes.criacionais.factorymethod;
+package br.com.andreluzzi.antipadroes.criacionais.factorymethod;
 
 // Gerenciador de Logística que lida apenas com caminhões
 class Logistica {

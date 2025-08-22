@@ -1,6 +1,5 @@
-package br.com.guilhermevillaca.antipadroes.estruturais.decorator;
+package br.com.andreluzzi.antipadroes.estruturais.decorator;
 
-// ☕ Café básico
 public class Cafe {
     public double getPreco() {
         return 5.00;

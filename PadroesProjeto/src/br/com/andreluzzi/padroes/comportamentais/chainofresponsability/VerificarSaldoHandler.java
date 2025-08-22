@@ -1,6 +1,5 @@
-package br.com.leonardovieira.padroes.comportamentais.chainofresponsability;
+package br.com.andreluzzi.padroes.comportamentais.chainofresponsability;
 
-// Handler para verificar saldo
 public class VerificarSaldoHandler extends AbstractHandler {
     @Override
     public void processar(String usuario, double valor) {
