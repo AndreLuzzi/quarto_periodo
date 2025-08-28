@@ -1,7 +1,5 @@
-package br.com.leonardovieira.padroes.comportamentais.state;
+package br.com.andreluzzi.padroes.comportamentais.state;
 
-
-// Interface State que define o comportamento para cada estado da máquina
 public interface State {
 
     void inserirMoeda();

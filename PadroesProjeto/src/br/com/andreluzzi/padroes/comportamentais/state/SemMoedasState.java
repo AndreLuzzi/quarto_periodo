@@ -1,11 +1,10 @@
-package br.com.leonardovieira.padroes.comportamentais.state;
+package br.com.andreluzzi.padroes.comportamentais.state;
 
+public class SemMoedasState implements State {
 
-// Estado SemMoeda: A máquina está esperando uma moeda
-public class SemMoedaState implements State {
     private MaquinaVenda maquinaVenda;
 
-    public SemMoedaState(MaquinaVenda maquinaVenda) {
+    public SemMoedasState(MaquinaVenda maquinaVenda) {
         this.maquinaVenda = maquinaVenda;
     }
 

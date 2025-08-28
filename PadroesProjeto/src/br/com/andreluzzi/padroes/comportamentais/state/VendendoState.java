@@ -1,8 +1,7 @@
-package br.com.leonardovieira.padroes.comportamentais.state;
+package br.com.andreluzzi.padroes.comportamentais.state;
 
-
-// Estado Vendendo: A máquina está processando a venda
 public class VendendoState implements State {
+
     private MaquinaVenda maquinaVenda;
 
     public VendendoState(MaquinaVenda maquinaVenda) {
@@ -16,7 +15,7 @@ public class VendendoState implements State {
 
     @Override
     public void ejetarMoeda() {
-        System.out.println("Já estamos processando uma venda. Não é possível ejetar a moeda.");
+        System.out.println("Já estamos processando uma venda, não é possível ejetar a moeda.");
     }
 
     @Override
@@ -35,3 +34,4 @@ public class VendendoState implements State {
         }
     }
 }
+

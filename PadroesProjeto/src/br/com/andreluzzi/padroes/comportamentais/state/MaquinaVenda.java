@@ -1,24 +1,23 @@
-package br.com.leonardovieira.padroes.comportamentais.state;
+package br.com.andreluzzi.padroes.comportamentais.state;
 
-
-// Classe MaquinaVenda que mantém o estado atual da máquina
 public class MaquinaVenda {
 
     private State semMoedaState;
+    private State semEstoqueState;
     private State comMoedaState;
     private State vendendoState;
-    private State semEstoqueState;
+    
 
     private State estadoAtual;
     private int quantidade;
 
     public MaquinaVenda(int quantidade) {
-        semMoedaState = new SemMoedaState(this);
+        this.quantidade = quantidade;
+        semMoedaState = new SemMoedasState(this);
+        semEstoqueState = new SemEstoqueState(this);
         comMoedaState = new ComMoedaState(this);
         vendendoState = new VendendoState(this);
-        semEstoqueState = new SemEstoqueState(this);
-
-        this.quantidade = quantidade;
+        
         if (quantidade > 0) {
             estadoAtual = semMoedaState;
         } else {
@@ -45,7 +44,7 @@ public class MaquinaVenda {
 
     public void liberarProduto() {
         if (quantidade > 0) {
-            System.out.println("Um produto foi dispensado.");
+            System.out.println("Um produto foi dispensado");
             quantidade--;
         }
     }
