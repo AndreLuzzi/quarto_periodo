@@ -1,22 +1,35 @@
-package br.com.leonardovieira.padroes.comportamentais.interpreter;
+package br.com.andreluzzi.padroes.comportamentais.interpreter;
 
-/*
- * ✅ Benefícios do Interpreter
-✅ Código aberto para expansão: Podemos adicionar novos operadores (*, /) sem modificar código existente.
-✅ Fácil manutenção: Cada expressão (Número, Soma, Subtração) é uma classe independente.
-✅ Flexibilidade: Podemos combinar expressões para interpretar frases mais complexas no futuro.
-✅ Organização clara: O código está bem estruturado e segue os princípios da programação orientada a objetos.
+import java.util.Arrays;
+import java.util.List;
 
-Agora nosso código está limpo, expansível e pronto para novas expressões! 🚀
- */
 public class Principal {
 
     public static void main(String[] args) {
-        Expressao expressao1 = Interpretador.construirExpressao("10 + 5");
-        System.out.println(expressao1.interpretar()); // 15
 
-        Expressao expressao2 = Interpretador.construirExpressao("20 - 8");
-        System.out.println(expressao2.interpretar()); // 12
+        List<Artigo> artigos = Arrays.asList{
+            new Artigo("Arquitetura de Software Moderna"),
+            new Artigo("Padrão MVC na Web"),
+            new Artigo("Padrões de Projeto e Arquitetura"),
+            new Artigo("Introdução e Inteligência Artificial"),
+            new Artigo("Model View Controller na prática")
+        };
+
+        //Expressão0 da query
+        //"arquitetura de software & (mvc or model view controller)"
+        Expressao termo1 = new Palavra("arquitetura de software");
+        Expressao termo2 = new Palavra("mvc");
+        Expressao termo3 = new Palavra("model view controller");
+
+        Expressao or = new OrExpressao(termo2, termo3);
+        Expressao query = new AndExpressao(termo1, or);
+
+        //busca de artigos
+        for(Artigo artigo: artigos){
+            if(query.interpretar(artigo)){
+                System.out.println("Encontrado " + artigo.getTitulo());
+            }
+        }
     }
 
 }
