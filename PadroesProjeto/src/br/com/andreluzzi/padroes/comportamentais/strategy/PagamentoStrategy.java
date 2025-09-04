@@ -1,7 +1,6 @@
-package br.com.leonardovieira.padroes.comportamentais.strategy;
+package br.com.andreluzzi.padroes.comportamentais.strategy;
 
-
-// Interface PagamentoStrategy que define o método para realizar pagamento
+// Interface para definir método de pagamento
 public interface PagamentoStrategy {
 
     void pagar(double valor);

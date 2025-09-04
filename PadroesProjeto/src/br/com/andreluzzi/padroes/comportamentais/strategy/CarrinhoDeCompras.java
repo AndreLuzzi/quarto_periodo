@@ -1,17 +1,15 @@
-package br.com.leonardovieira.padroes.comportamentais.strategy;
+package br.com.andreluzzi.padroes.comportamentais.strategy;
 
-
-// Classe CarrinhoDeCompras que utiliza uma estratégia de pagamento
 public class CarrinhoDeCompras {
 
     private PagamentoStrategy estrategiaDePagamento;
 
-    // Permite definir a estratégia de pagamento em tempo de execução
+    // Permite definir a estratégia de pagamento
     public void setEstrategiaDePagamento(PagamentoStrategy estrategiaDePagamento) {
         this.estrategiaDePagamento = estrategiaDePagamento;
     }
 
-    // Executa o pagamento usando a estratégia definida
+    // Executar o pagamento usando a estratégia definida
     public void pagar(double valor) {
         estrategiaDePagamento.pagar(valor);
     }
