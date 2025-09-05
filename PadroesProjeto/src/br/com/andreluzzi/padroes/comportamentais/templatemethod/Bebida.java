@@ -1,10 +1,9 @@
-package br.com.leonardovieira.padroes.comportamentais.templatemethod;
+package br.com.andreluzzi.padroes.comportamentais.templatemethod;
 
-
-// Classe abstrata Bebida que define o esqueleto para preparar uma bebida
+// Classe abstrata que define o template do metodo
 public abstract class Bebida {
 
-    // Método Template final para definir o esqueleto do algoritmo
+    // Método Template
     public final void preparar() {
         ferverAgua();
         adicionarIngredientePrincipal();
@@ -12,21 +11,20 @@ public abstract class Bebida {
         servir();
     }
 
-    // Passo comum a todas as bebidas
-    private void ferverAgua() {
-        System.out.println("Fervendo água...");
+    protected void ferverAgua() {
+        System.out.println("Fervendo Água");
     }
 
-    // Passo que deve ser implementado pelas subclasses
+    // Passo a ser implementado pela subclasse
     protected abstract void adicionarIngredientePrincipal();
 
-    // Passo que pode ser redefinido pelas subclasses (gancho)
+    // Pode ter implementação ou ser redefinido na subclasse
     protected void adicionarCondimentos() {
-        // Método gancho: pode ser redefinido ou deixado vazio
+        //Todo
+        //Método gancho
     }
 
-    // Passo comum a todas as bebidas
     private void servir() {
-        System.out.println("Servindo a bebida...");
+        System.out.println("Servindo a bebida");
     }
 }
