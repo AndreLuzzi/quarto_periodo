@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        function login(){
+            var usuario = document.querySelector("#usuario");
+            //var usuario2 = document.getElementById("usuario").value;
+            var Senha = document.querySelector("#senha");
+            
+            if(usuario === "admin" && senha === "123"){
+                localStorage.setItem("logado", "true");
+                //redirecionar para outra página
+                window.location.href = "dados.html";
+            }else{
+                alert("usuário ou senha inválidos");
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Login</h2>
+    <input type="text" id="usuario" placeholder="Usuário">
+    <br>
+    <input type="password" id="semha" placeholder="Senha">
+    <br>
+    <button onclick="login()">Entrar</button>
+    
+</body>
+</html>

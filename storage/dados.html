@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function verificarLogin(){
+            var logado = localStorage.getItem("logado");
+            if(logado != "true"){
+                alert("Voce precisa fazer o login primeiro");
+                window.location.href = "login.html";
+            }else{
+                //
+                alert("usuario logado");
+            }
+        }
+
+        function sair(){
+            localStorage.removeItem("logado");
+            window.location.href = "login.html";
+        }
+    </script>
+</head>
+<body onload="verificarLogin()">
+
+    <h2>Área restrita</h2>
+    <div id="conteudo">
+
+    </div>
+    <button onclick="sair()">sair</button>
+</body>
+</html>
