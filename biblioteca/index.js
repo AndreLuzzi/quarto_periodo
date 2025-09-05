@@ -76,5 +76,6 @@ axios.get("https://viacep.com.br/ws/85819040/json/", {
  }
 });
 
+//Prefiro usar o fetch em requisições simples e rápidas, quando quiser algo nativo sem instalar dependências. Já o axios é melhor para projetos maiores, pois oferece recursos extras (interceptores, tratamento de erros, timeout, suporte automático a JSON), tornando o código mais prático e robusto.
 
 
