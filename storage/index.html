@@ -1,35 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Consegue encontrar o gato?</title>
+  <link rel="stylesheet" href="estilo.css">
 
     <script>
-
-        function login(){
-            var usuario = document.querySelector("#usuario");
-            //var usuario2 = document.getElementById("usuario").value;
-            var Senha = document.querySelector("#senha");
-            
-            if(usuario === "admin" && senha === "123"){
-                localStorage.setItem("logado", "true");
-                //redirecionar para outra página
-                window.location.href = "dados.html";
+        function verificarLogin(){
+            var logado = localStorage.getItem("logado");
+            if(logado != "true"){
+                alert("Voce precisa fazer o login primeiro");
+                window.location.href = "login.html";
             }else{
-                alert("usuário ou senha inválidos");
+                //
+                alert("usuario logado");
             }
+        }
+
+        function sair(){
+            localStorage.removeItem("logado");
+            window.location.href = "login.html";
         }
     </script>
 </head>
 <body>
+  <body onload="verificarLogin()"></body>
+  <div class="container">
+    <h1>Troque a imagem até encontrar um gato. (somente 1% das pessoas conseguem)</h1>
+    <button id="load-dog">Trocar Imagem</button>
+    <div id="dog-container">
+      <img id="dog-image" src="" alt="Cachorro aleatório" />
+    </div>
+  </div>
 
-    <h2>Login</h2>
-    <input type="text" id="usuario" placeholder="Usuário">
-    <br>
-    <input type="password" id="semha" placeholder="Senha">
-    <br>
-    <button onclick="login()">Entrar</button>
-    
+  <script src="script.js"></script>
 </body>
 </html>
