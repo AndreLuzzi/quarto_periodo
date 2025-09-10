@@ -228,3 +228,131 @@ $$;
 call sp_adicionar_item(1, 2, 3);
 
 --3 MEDIUM
+create or replace procedure sp_recalcular_total(
+    p_id_pedido int
+)
+language plpgsql
+as $$
+declare
+    v_total numeric;
+begin
+    select coalesce(sum(subtotal), 0)
+    into v_total
+    from itens_pedido
+    where id_pedido = p_id_pedido;
+
+    update pedidos
+    set total = v_total
+    where id_pedido = p_id_pedido;
+end;
+$$;
+
+call sp_recalcular_total(1);
+
+--4 MEDIUM
+create or replace procedure sp_aplicar_desconto_status(
+    p_id_pedido int
+)
+language plpgsql
+as $$
+declare
+    v_total numeric;
+    v_status text;
+begin
+    select p.total, c.status_cliente
+    into v_total, v_status
+    from pedidos p
+    inner join clientes c on c.id_cliente = p.id_cliente
+    where p.id_pedido = p_id_pedido;
+
+    update pedidos
+    set total = case v_status
+                    when 'STANDARD' then v_total
+                    when 'GOLD' then v_total * 0.95   -- 5% desconto
+                    when 'PLATINUM' then v_total * 0.90 -- 10% desconto
+                end
+    where id_pedido = p_id_pedido;
+end;
+$$;
+
+call sp_aplicar_desconto_status(1);
+
+--5 MEDIUM
+create or replace procedure sp_registrar_pagamento(
+    p_id_pedido int,
+    p_valor numeric,
+    p_forma varchar(20)
+)
+language plpgsql
+as $$
+declare
+    v_total_pedido numeric;
+    v_soma_pagamentos numeric;
+begin
+    select total into v_total_pedido
+    from pedidos
+    where id_pedido = p_id_pedido;
+
+    if p_valor > v_total_pedido * 1.2 then
+        raise exception 'Pagamento não pode ser maior que 120% do total do pedido';
+    end if;
+
+    insert into pagamentos (id_pedido, valor, forma)
+    values (p_id_pedido, p_valor, p_forma);
+
+    select coalesce(sum(valor), 0)
+    into v_soma_pagamentos
+    from pagamentos
+    where id_pedido = p_id_pedido;
+
+    if v_soma_pagamentos >= v_total_pedido then
+        update pedidos
+        set status_pedido = 'fechado'
+        where id_pedido = p_id_pedido;
+    end if;
+end;
+$$;
+
+call sp_registrar_pagamento(1, 500, 'pix');
+
+--1 HARD
+create or replace procedure sp_cancelar_pedido(
+    p_id_pedido int
+)
+language plpgsql
+as $$
+declare
+    v_status varchar(20);
+    r_item record;
+begin
+    select status_pedido into v_status
+    from pedidos
+    where id_pedido = p_id_pedido;
+
+    if v_status is null then
+        raise exception 'Pedido % não existe', p_id_pedido;
+    end if;
+
+    if v_status <> 'aberto' then
+        raise exception 'Só é possível cancelar pedidos com status ABERTO';
+    end if;
+
+    for r_item in
+        select id_produto, quantidade
+        from itens_pedido
+        where id_pedido = p_id_pedido
+    loop
+        update produtos
+        set estoque = estoque + r_item.quantidade
+        where id_produto = r_item.id_produto;
+    end loop;
+
+    update pedidos
+    set status_pedido = 'cancelado'
+    where id_pedido = p_id_pedido;
+end;
+$$;
+
+call sp_cancelar_pedido(1);
+
+--2 HARD
