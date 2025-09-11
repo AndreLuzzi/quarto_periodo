@@ -356,3 +356,78 @@ $$;
 call sp_cancelar_pedido(1);
 
 --2 HARD
+create or replace procedure sp_trocar_item(
+    p_id_pedido int,
+    p_id_produto_antigo int,
+    p_id_produto_novo int,
+    p_qtd int
+)
+language plpgsql
+as $$
+declare
+    v_preco numeric;
+    v_estoque int;
+begin
+    update produtos
+    set estoque = estoque + (
+		select quantidade 
+	    from itens_pedido
+	    where id_pedido = p_id_pedido
+	    and id_produto = p_id_produto_antigo
+	)
+    where id_produto = p_id_produto_antigo;
+
+    delete from itens_pedido
+    where id_pedido = p_id_pedido
+      and id_produto = p_id_produto_antigo;
+
+    select preco, estoque
+    into v_preco, v_estoque
+    from produtos
+    where id_produto = p_id_produto_novo;
+
+    if v_estoque < p_qtd then
+        raise exception 'Estoque insuficiente para o produto %', p_id_produto_novo;
+    end if;
+
+    insert into itens_pedido (id_pedido, id_produto, quantidade, preco_unit)
+    values (p_id_pedido, p_id_produto_novo, p_qtd, v_preco);
+
+    update produtos
+    set estoque = estoque - p_qtd
+    where id_produto = p_id_produto_novo;
+
+exception
+    when others then
+        raise exception 'Falha ao trocar item do pedido';
+end;
+$$;
+
+call sp_trocar_item(1, 2, 5, 10);
+
+--3 HARD
+create or replace procedure sp_promover_clientes_por_gasto(
+    p_valor_minimo numeric
+)
+language plpgsql
+as $$
+begin
+    update clientes c
+    set status_cliente = case 
+                            when c.status_cliente = 'STANDARD' then 'GOLD'
+                            else c.status_cliente
+                         end
+    where c.id_cliente in (
+        select p.id_cliente
+        from pedidos p
+        where p.status_pedido = 'FECHADO'
+          and p.data_pedido >= current_date - interval '1 year'
+        group by p.id_cliente
+        having sum(p.total) >= p_valor_minimo
+    );
+end;
+$$;
+
+call sp_promover_clientes_por_gasto(2000);
+
+--4 HARD
