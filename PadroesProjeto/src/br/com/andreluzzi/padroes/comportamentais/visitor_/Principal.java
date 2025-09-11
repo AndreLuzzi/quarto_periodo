@@ -4,8 +4,8 @@ public class Principal {
 
     public static void main(String[] args) {
         Item[] itens = new Item[]{
-            new Livro("Padrões de Projeto", 50.0),
-            new Livro("Programação Java", 30.0),
+            new Livro(50.0, "Padrões de Projeto"),
+            new Livro(30.0, "Programação Java"),
             new Fruta("Maçã", 2.5, 10.0),
             new Fruta("Banana", 1.5, 5.0)
         };
