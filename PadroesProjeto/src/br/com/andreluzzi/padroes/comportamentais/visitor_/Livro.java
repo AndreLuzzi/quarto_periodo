@@ -1,13 +1,13 @@
-package br.com.leonardovieira.padroes.comportamentais.visitor_;
+package br.com.andreluzzi.padroes.comportamentais.visitor;
 
 public class Livro implements Item {
 
     private String titulo;
     private double preco;
 
-    public Livro(String titulo, double preco) {
-        this.titulo = titulo;
+    public Livro(double preco, String titulo) {
         this.preco = preco;
+        this.titulo = titulo;
     }
 
     public String getTitulo() {

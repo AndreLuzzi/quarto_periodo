@@ -1,8 +1,5 @@
-package br.com.leonardovieira.padroes.comportamentais.visitor_;
+package br.com.andreluzzi.padroes.comportamentais.visitor;
 
-/**
- *
- */
 public class VisitanteCarrinhoCompras implements Visitante {
 
     @Override
@@ -12,7 +9,6 @@ public class VisitanteCarrinhoCompras implements Visitante {
 
     @Override
     public void visitar(Fruta fruta) {
-        double custo = fruta.getPeso() * fruta.getPrecoPorKg();
-        System.out.println("Fruta: " + fruta.getNome() + " custa " + custo);
+        System.out.println("Fruta: " + fruta.getNome() + " custa " + fruta.getPeso() * fruta.getPrecoPorKg());        
     }
 }
