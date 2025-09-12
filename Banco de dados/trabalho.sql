@@ -330,7 +330,7 @@ begin
     where id_pedido = p_id_pedido;
 
     if v_status is null then
-        raise exception 'Pedido % não existe', p_id_pedido;
+        raise exception 'Esse pedido não existe';
     end if;
 
     if v_status <> 'aberto' then
