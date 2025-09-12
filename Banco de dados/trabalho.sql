@@ -431,3 +431,74 @@ $$;
 call sp_promover_clientes_por_gasto(2000);
 
 --4 HARD
+create or replace procedure sp_fechamento_mensal_cliente(
+    p_id_cliente int,
+    p_ano int,
+    p_mes int,
+    inout total_pedidos numeric default 0,
+    inout total_pago numeric default 0,
+    inout em_aberto numeric default 0
+)
+language plpgsql
+as $$
+begin
+    select coalesce(sum(total), 0)
+    into total_pedidos
+    from pedidos
+    where id_cliente = p_id_cliente
+      and extract(year from data_pedido) = p_ano
+      and extract(month from data_pedido) = p_mes;
+
+    select coalesce(sum(valor), 0)
+    into total_pago
+    from pagamentos
+    where id_pedido in (
+        select id_pedido
+        from pedidos
+        where id_cliente = p_id_cliente
+    )
+      and extract(year from data_pagamento) = p_ano
+      and extract(month from data_pagamento) = p_mes;
+
+    em_aberto := total_pedidos - total_pago;
+end;
+$$;
+
+call sp_fechamento_mensal_cliente(101, 2025, 5, null, null, null);
+
+--5 HARD
+create or replace procedure sp_substituir_preco_por_faixa(
+    p_id_produto int,
+    p_faixa text
+)
+language plpgsql
+as $$
+declare
+    v_preco_atual numeric;
+    v_preco_novo numeric;
+begin
+    select preco
+    into v_preco_atual
+    from produtos
+    where id_produto = p_id_produto;
+
+    v_preco_novo := case p_faixa
+        when 'PROMO10' then v_preco_atual * 0.90
+        when 'PROMO20' then v_preco_atual * 0.80
+        when 'AUMENTO5' then v_preco_atual * 1.05
+        else v_preco_atual
+    end;
+
+    if v_preco_novo < 0 then
+        raise exception 'O preço não pode ficar negativo';
+    end if;
+
+    update produtos
+    set preco = v_preco_novo
+    where id_produto = p_id_produto;
+end;
+$$;
+
+call sp_substituir_preco_por_faixa(1, 'PROMO20');
+call sp_substituir_preco_por_faixa(2, 'AUMENTO5');
+call sp_substituir_preco_por_faixa(3, 'INVALIDO');
