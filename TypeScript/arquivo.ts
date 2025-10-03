@@ -1,4 +1,4 @@
 function soma(a: number, b: number): number {
  return a + b;
 }
-console.log(soma(5, "10"));// Erro detectado na compilação!
+console.log(soma(5, 10));// Erro detectado na compilação!
