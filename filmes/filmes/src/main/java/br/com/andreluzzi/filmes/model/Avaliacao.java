@@ -31,4 +31,7 @@ public class Avaliacao {
     @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
+    @ManyToOne
+    @JoinColumn(name = "obra_id", referencedColumnName = "id")
+    private Obra obra;
 }
