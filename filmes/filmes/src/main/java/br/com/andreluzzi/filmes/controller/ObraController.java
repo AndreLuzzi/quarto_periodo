@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ import br.com.andreluzzi.filmes.model.Obra;
 import br.com.andreluzzi.filmes.repository.ObraRepository;
 
 @RestController
-@RequestMapping(value = "Obra")
+@RequestMapping(value = "obra")
 public class ObraController {
     
     /*

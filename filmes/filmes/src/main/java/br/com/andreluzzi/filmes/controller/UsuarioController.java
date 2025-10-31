@@ -16,7 +16,7 @@ import br.com.andreluzzi.filmes.model.Usuario;
 import br.com.andreluzzi.filmes.repository.UsuarioRepository;
 
 @RestController
-@RequestMapping(value = "Usuario")
+@RequestMapping(value = "usuario")
 public class UsuarioController {
 
     /*

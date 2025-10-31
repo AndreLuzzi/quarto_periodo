@@ -73,7 +73,7 @@ public class Dbinsert implements CommandLineRunner{
     
         //Inserindo obras aleatórias
         Random random = new Random();
-        for(int i = 0; i <= 10; i++){
+        for(int i = 0; i <= 3; i++){
             //gerando ano randomico
             int ano = 1960 + random.nextInt(2025-1960+1);
             Obra obra = new Obra(

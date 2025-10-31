@@ -16,7 +16,7 @@ import br.com.andreluzzi.filmes.model.Genero;
 import br.com.andreluzzi.filmes.repository.GeneroRepository;
 
 @RestController
-@RequestMapping(value = "Genero")
+@RequestMapping(value = "genero")
 public class GeneroController {
     
      /*
