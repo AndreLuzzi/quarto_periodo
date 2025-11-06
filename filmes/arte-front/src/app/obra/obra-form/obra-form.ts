@@ -25,7 +25,7 @@ export class ObraForm {
     id: new FormControl<number | null>(null),
     titulo: new FormControl<string | null>(''),
     descricao: new FormControl<string | null>(''),
-    anoLancamento: new FormControl<string | null>(null),
+    anoLancamento: new FormControl<number | null>(null),
     imagemurl: new FormControl<string | null>(''),
     tipo: new FormControl<string | null>(null),
     genero: new FormControl<string | null>('')
