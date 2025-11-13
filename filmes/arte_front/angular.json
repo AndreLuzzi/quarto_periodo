@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "arte-front": {
+    "arte_front": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -57,10 +57,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "arte-front:build:production"
+              "buildTarget": "arte_front:build:production"
             },
             "development": {
-              "buildTarget": "arte-front:build:development"
+              "buildTarget": "arte_front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,6 +83,7 @@
               }
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ]
           }

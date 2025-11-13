@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +50,7 @@ public class ObraController {
         return new ResponseEntity<Obra>(obraRepository.save(obra), HttpStatus.OK);
     }
 
-    @RequestMapping(value="remover/(id)", method=RequestMethod.DELETE)
+    @RequestMapping(value="remover/{id}", method=RequestMethod.DELETE)
     public ResponseEntity<Obra> remover (@PathVariable(value= "id") Integer id) {
         Optional<Obra> object = obraRepository.findById(id);
         if(object.isPresent()){
@@ -60,9 +59,9 @@ public class ObraController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
     @RequestMapping(value = "atualizar/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Obra> atualizar(@PathVariable(value= "id") Integer id, Obra novObra){
+    public ResponseEntity<Obra> atualizar(@PathVariable(value= "id") Integer id, 
+    @RequestBody Obra novObra){
         Optional<Obra> object = obraRepository.findById(id);
         if(object.isPresent()){
             return new ResponseEntity<>(obraRepository.save(novObra), HttpStatus.OK);

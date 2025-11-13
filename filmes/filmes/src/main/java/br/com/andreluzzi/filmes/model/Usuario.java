@@ -16,16 +16,18 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "usuario")
+@Table(name="usuario")
+
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="nome", length = 200, nullable = false)
+    @Column(name = "nome", length= 200, nullable=false)
     private String nome;
 
-    @Column(name = "email")
+    @Column(name="email")
     private String email;
 
     @Column(name="senha")

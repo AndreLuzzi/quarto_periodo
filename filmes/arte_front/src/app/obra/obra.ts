@@ -1,20 +1,19 @@
 import { Component } from '@angular/core';
 import { ObraServices } from '../services/obra-services';
-import { lastValueFrom } from 'rxjs';
+import { last, lastValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-obra',
-  imports: [],
   templateUrl: './obra.html',
-  styleUrl: './obra.css',
+  styleUrls: ['./obra.css']
 })
 export class Obra {
 
   obra$: any;
 
-  constructor(private obraService: ObraServices, private route: Router){
-  }
+  constructor(private obraService: ObraServices, private route: Router){}
   
   ngOnInit(): void{
     this.getObra();
@@ -24,12 +23,12 @@ export class Obra {
     this.obra$ = await lastValueFrom(this.obraService.getObras());
   }
 
-  //redirecionar para componente de edição de obra
-  public editar(id: number){
+  //redireciona para componente de edicao de obra
+  public editar(id:number){
     this.route.navigate(['obra/editar', id]);
   }
 
-  //chamar um método do service que fará exclusão
+  //chamar um metodo do service que sera excluido 
   public excluir(id:number){
 
   }

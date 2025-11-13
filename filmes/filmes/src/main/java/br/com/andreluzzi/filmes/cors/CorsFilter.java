@@ -1,9 +1,14 @@
 package br.com.andreluzzi.filmes.cors;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ *
+ * @author villaca
+ */
 @Component
 public class CorsFilter implements WebMvcConfigurer {
 

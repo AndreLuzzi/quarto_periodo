@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.andreluzzi.filmes.model.Usuario;
+import br.com.andreluzzi.filmes.repository.AvaliacaoRepository;
 import br.com.andreluzzi.filmes.repository.UsuarioRepository;
 
 @RestController
-@RequestMapping(value = "usuario")
+@RequestMapping(value="usuario")
 public class UsuarioController {
+
+    private final AvaliacaoRepository avaliacaoRepository;
 
     /*
     * C Create = novo
@@ -29,12 +32,17 @@ public class UsuarioController {
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    @RequestMapping(value = "listar", method = RequestMethod.GET)
-    public ResponseEntity<List<Usuario>> listar(){
-        return ResponseEntity.ok((List<Usuario>) usuarioRepository.findAll());
+    UsuarioController(AvaliacaoRepository avaliacaoRepository) {
+        this.avaliacaoRepository = avaliacaoRepository;
     }
 
-    //localhost: 8080/usuario/listar/10
+    @RequestMapping(value="listar", method= RequestMethod.GET)
+    public ResponseEntity<List<Usuario>> listar(){
+        return ResponseEntity.ok((List<Usuario>) usuarioRepository.findAll());
+
+    }
+
+     //localhost: 8080/usuario/listar/10
     @RequestMapping(value = "listar/{id}", method = RequestMethod.GET)
     public ResponseEntity<Usuario> getById(@PathVariable(value="id") Integer id){
         Optional<Usuario> object = usuarioRepository.findById(id);
@@ -45,8 +53,8 @@ public class UsuarioController {
         }
     }
 
-    @RequestMapping(value = "novo", method = RequestMethod.POST)
-    public ResponseEntity<Usuario>novo(@RequestBody Usuario usuario){
+    @RequestMapping(value="novo", method=RequestMethod.POST)
+    public ResponseEntity<Usuario> novo(@RequestBody Usuario usuario){
         return new ResponseEntity<Usuario>(usuarioRepository.save(usuario), HttpStatus.OK);
     }
 
@@ -68,5 +76,4 @@ public class UsuarioController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
 }

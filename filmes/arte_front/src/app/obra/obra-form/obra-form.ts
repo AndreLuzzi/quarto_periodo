@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ObraServices } from '../../services/obra-services';
 import { lastValueFrom } from 'rxjs';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GeneroServices } from '../../services/genero-services';
 
 @Component({
   selector: 'app-obra-form',
@@ -15,17 +16,20 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 })
 export class ObraForm {
 
+  genero$: any;
   id: any;
   private activateRoute = inject(ActivatedRoute);
   private obraService = inject(ObraServices);
   private route = inject(Router);
+  private generoService = inject(GeneroServices);
   obra: any;
+
 
   form = new FormGroup({
     id: new FormControl<number | null>(null),
     titulo: new FormControl<string | null>(''),
     descricao: new FormControl<string | null>(''),
-    anoLancamento: new FormControl<number | null>(null),
+    anoLancamento: new FormControl<string | null>(null),
     imagemurl: new FormControl<string | null>(''),
     tipo: new FormControl<string | null>(null),
     genero: new FormControl<string | null>('')
@@ -40,8 +44,13 @@ export class ObraForm {
     if(this.id){
       this.getById();
     }
+    this.getGeneros();
   }
 
+  public async getGeneros(){
+    this.genero$ = await lastValueFrom(this.generoService.getGenero());
+  }
+  
   public async getById(){
     this.obra = await lastValueFrom(this.obraService.getObraById(this.id));
     //popular campos do formulário
@@ -55,19 +64,18 @@ export class ObraForm {
   }
 
   public salvar(){
-
     let obra = {
       id: this.id,
-      titulo: this.form.controls.titulo.value,
-      descricao: this.form.controls.descricao.value,
+      titulo:this.form.controls.titulo.value,
+      descricao:this.form.controls.descricao.value,
       anoLancamento: this.form.controls.anoLancamento.value,
-      imagemUrl: this.form.controls.imagemurl.value,
+      imagemUrl:this.form.controls.imagemurl.value,
       tipo: this.form.controls.tipo.value,
       genero: {
-        id: this.form.controls.genero.value
+        id:this.form.controls.genero.value
       }
     }
-    this.obraService.salvar(obra).subscribe(
+     this.obraService.salvar(obra).subscribe(
       obra => {
         this,this.route.navigate(['obra']);
       },

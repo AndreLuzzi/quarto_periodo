@@ -46,8 +46,8 @@ public class AvaliacaoController {
     }
 
     @RequestMapping(value = "novo", method = RequestMethod.POST)
-    public ResponseEntity<Avaliacao>novo(@RequestBody Avaliacao avalicao){
-        return new ResponseEntity<Avaliacao>(avaliacaoRepository.save(avalicao), HttpStatus.OK);
+    public ResponseEntity<Avaliacao>novo(@RequestBody Avaliacao avaliacao){
+        return new ResponseEntity<Avaliacao>(avaliacaoRepository.save(avaliacao), HttpStatus.OK);
     }
 
     @RequestMapping(value="remover/(id)", method=RequestMethod.DELETE)
@@ -68,4 +68,7 @@ public class AvaliacaoController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    
 }
+

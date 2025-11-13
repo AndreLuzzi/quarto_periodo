@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.andreluzzi.filmes.model.Genero;
+import br.com.andreluzzi.filmes.model.Obra;
 import br.com.andreluzzi.filmes.repository.GeneroRepository;
 
 @RestController
 @RequestMapping(value = "genero")
 public class GeneroController {
     
-     /*
+    /*
     * C Create = novo
     * R Read = listar e listar por id
     * U Update = atualizar
@@ -51,7 +52,7 @@ public class GeneroController {
     }
 
     @RequestMapping(value="remover/(id)", method=RequestMethod.DELETE)
-    public ResponseEntity<Genero> remover (@PathVariable(value= "id") Integer id) {
+    public ResponseEntity<Obra> remover (@PathVariable(value= "id") Integer id) {
         Optional<Genero> object = generoRepository.findById(id);
         if(object.isPresent()){
             generoRepository.delete(object.get());

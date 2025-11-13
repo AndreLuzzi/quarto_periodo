@@ -1,5 +1,6 @@
 package br.com.andreluzzi.filmes.model;
 
+
 import br.com.andreluzzi.filmes.model.enums.TipoObra;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,7 +17,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="obra")
+@Table(name = "obra")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,12 +30,15 @@ public class Obra {
     @Column(length=1000)
     private String descricao;
     private Integer anoLancamento;
-    private String imagemUrl;
+    private String imagemURL;
     @Enumerated(EnumType.STRING)
     @Column(nullable= false, length = 20)
     private TipoObra tipo;
     @ManyToOne
     @JoinColumn(name="genero_id", referencedColumnName= "id")
     private Genero genero;
+
+
+
 
 }

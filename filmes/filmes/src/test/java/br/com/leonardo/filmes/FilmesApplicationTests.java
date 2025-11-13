@@ -1,10 +1,10 @@
-package br.com.andreluzzi.filmes;
+package br.com.leonardo.filmes;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProjetobimestreApplicationTests {
+class FilmesApplicationTests {
 
 	@Test
 	void contextLoads() {

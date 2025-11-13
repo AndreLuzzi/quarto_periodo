@@ -24,26 +24,30 @@ import br.com.andreluzzi.filmes.repository.UsuarioRepository;
 
 @Component
 public class Dbinsert implements CommandLineRunner{
-    
-    @Autowired
-    UsuarioRepository usuarioRepository;
 
     @Autowired
-    GeneroRepository generoRepository;
+    UsuarioRepository usuarioRepository;
 
     @Autowired
     ObraRepository obraRepository;
 
     @Autowired
+    GeneroRepository generoRepository;
+
+    @Autowired
     AvaliacaoRepository avaliacaoRepository;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) throws Exception{
 
-        //inserindo Usuario
-        Usuario usuario1 = new Usuario(null, "andre luzzi", "andre@outlook.com", "123",
+        //inserindo usuario
+        Usuario usuario = new Usuario(
+        null, 
+        "Andreluzzi", 
+        "Andreluzzi@outlook.com", 
+        "123", 
         LocalDateTime.now());
-        usuarioRepository.save(usuario1);
+        usuarioRepository.save(usuario);
 
         //inserindo Genero
         Genero genero1 = new Genero(null, "Ação");
@@ -60,7 +64,7 @@ public class Dbinsert implements CommandLineRunner{
         List<Genero> generos = Arrays.asList(genero4, genero5, genero6);
         generoRepository.saveAll(generos);
 
-        Lorem lorem = new LoremIpsum().getInstance();
+          Lorem lorem = new LoremIpsum().getInstance();
 
         //Inserindo Obra
         Obra obra1 = new Obra(null, "Duro de Matar", 
@@ -73,7 +77,7 @@ public class Dbinsert implements CommandLineRunner{
     
         //Inserindo obras aleatórias
         Random random = new Random();
-        for(int i = 0; i <= 3; i++){
+        for(int i = 0; i <= 10; i++){
             //gerando ano randomico
             int ano = 1960 + random.nextInt(2025-1960+1);
             Obra obra = new Obra(
@@ -93,7 +97,7 @@ public class Dbinsert implements CommandLineRunner{
             null,
             10,
             lorem.getParagraphs(1, 3),
-            LocalDateTime.now(), usuario1, obra1);
+            LocalDateTime.now(), usuario, obra1);
             avaliacaoRepository.save(avaliacao1);
     }
 }
