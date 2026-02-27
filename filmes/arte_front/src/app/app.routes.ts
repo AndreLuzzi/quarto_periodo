@@ -1,8 +1,9 @@
 import { RouterModule, Routes } from '@angular/router';
 import { ObraServices } from './services/obra-services';
-import { ObraForm } from './obra/obra-form/obra-form';
-import { Obra } from './obra/obra';
-import { Login } from './login/login';
+import { ObraForm } from './components/obra/obra-form/obra-form';
+import { Obra } from './components/obra/obra';
+import { Login } from './components/login/login';
+
 
 
 export const routes: Routes = [

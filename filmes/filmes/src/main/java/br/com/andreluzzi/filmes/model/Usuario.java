@@ -36,3 +36,4 @@ public class Usuario {
     @Column(name="dataCadastro")
     private LocalDateTime dataCadastro;
 }
+

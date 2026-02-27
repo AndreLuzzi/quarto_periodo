@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.andreluzzi.filmes.model.LoginDTO;
 import br.com.andreluzzi.filmes.model.Usuario;
 import br.com.andreluzzi.filmes.repository.AvaliacaoRepository;
 import br.com.andreluzzi.filmes.repository.UsuarioRepository;
@@ -75,5 +76,21 @@ public class UsuarioController {
             return new ResponseEntity<>(usuarioRepository.save(novUsuario), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public ResponseEntity<?> login(@RequestBody LoginDTO login) {
+
+        // Busca o usuário pelo email
+        Usuario usuario = usuarioRepository.findByEmail(login.email);
+
+        // Se existe e a senha confere
+        if (usuario != null && usuario.getSenha().equals(login.senha)) {
+            return ResponseEntity.ok(usuario); // ou token futuramente
+        }
+
+        // Caso inválido
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                            .body("Email ou senha inválidos");
     }
 }
